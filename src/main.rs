@@ -17,7 +17,7 @@ use crate::handlers::api::ApiDoc;
 async fn main() {
     let swagger_ui = SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi());
     let router = Router::new()
-        .merge(swagger_ui)
+        // .merge(swagger_ui)
         .route("/", get(handlers::template::html_template))
         .route("/users", get(handlers::template::users_page))
         .route("/api/load", get(handlers::api::load_json_placeholder))
