@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      # target: final # используем финальный stage из многоступенчатой сборки
+    ports:
+      - "3000:3000"
+    # environment:
+    #   - APP_ENV=production
+    #   - PORT=5000
+    restart: unless-stopped
+    # volumes:
+    #   - ./foo/data:/root/data
+    networks:
+      - app-network
+  # frontend:
+  #   volumes:
+  #     - ./frontend:/app
+  #     # - frontend-node-modules:/app/node_modules
+  #   depends_on:
+  #     - backend
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./frontend
+  #   networks:
+  #     - app-network
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    # volumes:
+    # - ./frontend/dist:/usr/share/nginx/html
+    # depends_on:
+    #   - frontend
+    #   - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
