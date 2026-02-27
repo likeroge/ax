@@ -3,6 +3,9 @@ name = "ruapi"
 version = "0.1.0"
 edition = "2024"
 
+[build]
+target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
+
 [dependencies]
 axum = "0.8.8"
 serde = { version = "1", features = ["derive"] }
