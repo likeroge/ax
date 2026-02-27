@@ -2,9 +2,8 @@
 FROM rust:1.88-alpine AS builder
 RUN apk add --no-cache musl-dev openssl-dev
 WORKDIR /app
-COPY Cargo.toml Cargo.lock ./
+COPY . .
 RUN cargo vendor /vendor && cargo fetch --locked
-COPY src ./src
 RUN cargo build --release
 # Финальный образ
 FROM alpine:latest
