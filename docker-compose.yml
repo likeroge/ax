@@ -12,7 +12,7 @@ services:
     #   - PORT=5000
     restart: unless-stopped
     volumes:
-      - ./static:/app/static
+      - ./static:/usr/local/bin/ruapi
       # - ./templates:/app/static
     networks:
       - app-network

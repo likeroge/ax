@@ -24,8 +24,8 @@ FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/target/release/ruapi /usr/local/bin/ruapi
 
-RUN mkdir -p static
-RUN mkdir -p templates
+#RUN mkdir -p app/static
+#RUN mkdir -p app/templates
 
 EXPOSE 3000
 CMD ["ruapi"]
