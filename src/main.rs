@@ -15,7 +15,7 @@ use crate::handlers::api::ApiDoc;
 
 #[tokio::main]
 async fn main() {
-    let swagger_ui = SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi());
+    // let swagger_ui = SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi());
     let router = Router::new()
         // .merge(swagger_ui)
         .route("/", get(handlers::template::html_template))
