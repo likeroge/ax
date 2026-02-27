@@ -10,7 +10,8 @@ RUN mkdir -p src && \
 # Скачиваем и компилируем зависимости
 RUN cargo build --release
 # Копируем реальный исходный код
-COPY src ./src
+# COPY src ./src
+COPY . .
 # Пересобираем с реальным кодом
 RUN cargo build --release
 
