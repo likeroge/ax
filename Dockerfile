@@ -23,5 +23,9 @@ RUN cargo build --release
 FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/target/release/ruapi /usr/local/bin/ruapi
+
+RUN mkdir -p static
+RUN mkdir -p templates
+
 EXPOSE 3000
 CMD ["ruapi"]
