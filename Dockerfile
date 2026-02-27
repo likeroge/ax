@@ -1,6 +1,6 @@
 # Этап сборки
-# FROM rust:1.88-alpine AS builder
-# RUN apk add --no-cache musl-dev openssl-dev
+FROM rust:1.88-alpine AS builder
+RUN apk add --no-cache musl-dev openssl-dev
 WORKDIR /app
 # Копируем только файлы зависимостей
 COPY Cargo.toml Cargo.lock ./
