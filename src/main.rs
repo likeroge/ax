@@ -25,7 +25,7 @@ async fn main() {
         .route("/api/json", get(handlers::api::get_json))
         .fallback_service(ServeDir::new("static"));
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 5005));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let tcp = TcpListener::bind(&addr).await.expect("Bind ip error");
 
     println!("Hello, world!");
