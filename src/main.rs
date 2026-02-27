@@ -23,12 +23,12 @@ async fn main() {
         .route("/api/load", get(handlers::api::load_json_placeholder))
         .route("/api/posts/{id}", get(handlers::api::get_post_data))
         .route("/api/json", get(handlers::api::get_json))
-        .fallback_service(ServeDir::new("static"));
+        .fallback_service(ServeDir::new("./static"));
 
     // let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     let tcp = TcpListener::bind(&addr).await.expect("Bind ip error");
 
-    println!("Hello, world!");
+    println!("Server started!");
     axum::serve(tcp, router).await.expect("Error start server");
 }
