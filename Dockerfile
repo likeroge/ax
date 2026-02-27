@@ -14,9 +14,10 @@ COPY src ./src
 # Пересобираем с реальным кодом
 RUN cargo build --release
 
-COPY . .
-RUN cargo vendor /vendor && cargo fetch --locked
-RUN cargo build --release
+#COPY . .
+#RUN cargo vendor /vendor && cargo fetch --locked
+#RUN cargo build --release
+
 # Финальный образ
 FROM alpine:latest
 RUN apk add --no-cache ca-certificates
