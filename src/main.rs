@@ -5,13 +5,12 @@ mod template_structs;
 
 use std::net::SocketAddr;
 
+use crate::handlers::api::ApiDoc;
 use axum::{Router, routing::get};
 use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
-
-use crate::handlers::api::ApiDoc;
 
 #[tokio::main]
 async fn main() {

@@ -11,8 +11,8 @@ services:
     #   - APP_ENV=production
     #   - PORT=5000
     restart: unless-stopped
-    # volumes:
-    #   - ./foo/data:/root/data
+    volumes:
+      - ./static:/usr/local/bin/ruapi/static
     networks:
       - app-network
   # frontend:
