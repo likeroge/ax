@@ -1,5 +1,5 @@
 # Этап сборки
-FROM rust:1.80-slim-bookworm AS builder
+FROM rust:1.88-slim-bookworm AS builder
 # Устанавливаем необходимые системные зависимости
 RUN apt-get update && apt-get install -y \
   pkg-config \
