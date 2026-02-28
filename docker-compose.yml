@@ -12,8 +12,10 @@ services:
     #   - PORT=5000
     restart: unless-stopped
     volumes:
-      - ./static:/usr/local/bin/static
-      - ./templates/:/usr/local/bin/templates
+      - ./src:/app/src:ro
+      # Монтируем Cargo.toml и Cargo.lock
+      - ./Cargo.toml:/app/Cargo.toml:ro
+      - ./Cargo.lock:/app/Cargo.lock:ro
       # - ./templates:/app/static
     networks:
       - app-network

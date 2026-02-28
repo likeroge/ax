@@ -1,31 +1,57 @@
 # Этап сборки
-FROM rust:1.88-alpine AS builder
-RUN apk add --no-cache musl-dev openssl-dev
+FROM rust:1.80-slim-bookworm AS builder
+# Устанавливаем необходимые системные зависимости
+RUN apt-get update && apt-get install -y \
+  pkg-config \
+  libssl-dev \
+  ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 # Копируем только файлы зависимостей
 COPY Cargo.toml Cargo.lock ./
-# Создаем фиктивный main.rs для кэширования зависимостей
+# Создаем фиктивный main.rs для предварительной компиляции зависимостей
 RUN mkdir -p src && \
   echo "fn main() {}" > src/main.rs
-# Скачиваем и компилируем зависимости
+# Компилируем зависимости (это будет закэшировано)
 RUN cargo build --release
-# Копируем реальный исходный код
-# COPY src ./src
-COPY . .
-# Пересобираем с реальным кодом
-RUN cargo build --release
+# Удаляем фиктивный main.rs
+RUN rm -rf src
 
-#COPY . .
-#RUN cargo vendor /vendor && cargo fetch --locked
-#RUN cargo build --release
+# Копируем исходный код
+COPY src ./src
 
-# Финальный образ
-FROM alpine:latest
-RUN apk add --no-cache ca-certificates
-COPY --from=builder /app/target/release/ruapi /usr/local/bin/ruapi
+# Пересобираем приложение (только наш код, зависимости уже закэшированы)
+RUN cargo build --release --frozen
 
-RUN mkdir -p /usr/local/bin/static
-RUN mkdir -p /usr/local/bin/templates
+# Второй этап: минимальный runtime образ
+FROM debian:bookworm-slim
 
+# Устанавливаем runtime зависимости
+RUN apt-get update && apt-get install -y \
+  ca-certificates \
+  libssl3 \
+  && rm -rf /var/lib/apt/lists/*
+
+# Создаем не-root пользователя для безопасности
+RUN useradd -m -u 1000 appuser
+
+WORKDIR /app
+
+# Копируем собранный бинарник из builder этапа
+COPY --from=builder /app/target/release/ruapi /app/ruapi
+
+# Копируем статические файлы если есть
+COPY --chown=appuser:appuser static ./static
+
+# Меняем владельца
+RUN chown -R appuser:appuser /app
+
+# Переключаемся на не-root пользователя
+USER appuser
+
+# Экспонируем порт
 EXPOSE 3000
+
+
 CMD ["ruapi"]
