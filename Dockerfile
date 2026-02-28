@@ -6,7 +6,7 @@ WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 # Создаем фиктивный main.rs для кэширования зависимостей
 RUN mkdir -p src && \
-    echo "fn main() {}" > src/main.rs
+  echo "fn main() {}" > src/main.rs
 # Скачиваем и компилируем зависимости
 RUN cargo build --release
 # Копируем реальный исходный код
@@ -25,7 +25,7 @@ RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/target/release/ruapi /usr/local/bin/ruapi
 
 RUN mkdir -p /usr/local/bin/static
-#RUN mkdir -p app/templates
+RUN mkdir -p /usr/local/bin/templates
 
 EXPOSE 3000
 CMD ["ruapi"]
