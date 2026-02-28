@@ -1,7 +1,7 @@
 mod errors;
 mod handlers;
 mod responses;
-mod template_structs;
+// mod template_structs;
 
 use std::net::SocketAddr;
 
