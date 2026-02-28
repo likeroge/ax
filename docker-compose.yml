@@ -13,6 +13,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./static:/usr/local/bin/static
+      - ./templates/:/usr/local/bin/templates
       # - ./templates:/app/static
     networks:
       - app-network
