@@ -44,6 +44,8 @@ COPY --from=builder /app/target/release/ruapi /app/ruapi
 # Копируем статические файлы если есть
 COPY --chown=appuser:appuser static ./static
 
+COPY --chown=appuser:appuser templates ./templates
+
 # Меняем владельца
 RUN chown -R appuser:appuser /app
 
