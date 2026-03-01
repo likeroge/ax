@@ -6,13 +6,20 @@ use crate::{
     responses::ApiResponse,
     template_structs::{
         common::{HelloPageStruct, IndexTemplate},
-        users::UsersListTemplate,
+        users::{UserFormTemplate, UsersListTemplate},
     },
 };
 
 pub async fn html_template() -> Result<ApiResponse, ApiError> {
     let template = IndexTemplate {
         name: "Hello world".to_string(),
+    };
+    Ok(ApiResponse::OkHtml(Html(template.render()?)))
+}
+
+pub async fn user_form() -> Result<ApiResponse, ApiError> {
+    let template = UserFormTemplate {
+        user_name: "".to_string(),
     };
     Ok(ApiResponse::OkHtml(Html(template.render()?)))
 }

@@ -1,5 +1,7 @@
-use axum::extract::Path;
-use serde_json::{Value, json};
+use std::collections::HashMap;
+
+use axum::{extract::Path, response::Redirect, Form};
+use serde_json::{json, Value};
 use utoipa::OpenApi;
 
 use crate::{errors::ApiError, responses::ApiResponse};
@@ -24,6 +26,13 @@ pub async fn load_json_placeholder() -> Result<ApiResponse, ApiError> {
         }
         Err(e) => Err(ApiError::SpecialError(json!(e.to_string()))),
     }
+}
+
+pub async fn create_user(Form(user_name): Form<HashMap<String, String>>) -> Redirect {
+    println!("{:?}", user_name);
+
+    let redirect = Redirect::to("/");
+    redirect
 }
 
 pub async fn get_post_data(Path(post_id): Path<u8>) -> Result<ApiResponse, ApiError> {
