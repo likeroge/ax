@@ -2,7 +2,6 @@ mod errors;
 mod handlers;
 mod responses;
 mod template_structs;
-// mod template_structs;
 
 use std::net::SocketAddr;
 
@@ -20,6 +19,7 @@ async fn main() {
         // .merge(swagger_ui)
         .route("/", get(handlers::template::html_template))
         .route("/users", get(handlers::template::users_page))
+        .route("/hello", get(handlers::template::hello_world))
         .route("/api/load", get(handlers::api::load_json_placeholder))
         .route("/api/posts/{id}", get(handlers::api::get_post_data))
         .route("/api/json", get(handlers::api::get_json))

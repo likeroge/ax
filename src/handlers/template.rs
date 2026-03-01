@@ -4,12 +4,22 @@ use axum::response::Html;
 use crate::{
     errors::ApiError,
     responses::ApiResponse,
-    template_structs::{common::IndexTemplate, users::UsersListTemplate},
+    template_structs::{
+        common::{HelloPageStruct, IndexTemplate},
+        users::UsersListTemplate,
+    },
 };
 
 pub async fn html_template() -> Result<ApiResponse, ApiError> {
     let template = IndexTemplate {
         name: "Hello world".to_string(),
+    };
+    Ok(ApiResponse::OkHtml(Html(template.render()?)))
+}
+
+pub async fn hello_world() -> Result<ApiResponse, ApiError> {
+    let template = HelloPageStruct {
+        message: "Hello world".to_string(),
     };
     Ok(ApiResponse::OkHtml(Html(template.render()?)))
 }
