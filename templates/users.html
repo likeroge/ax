@@ -1,15 +1,10 @@
-<html>
-    <head>
-        <title>Users page</title>
-        <link rel="stylesheet" href="/css/style2.css">
-    </head>
-
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h1>Список пользователей</h1>
-    <ul>
+    <ul class="user-list">
         {% for user in users %}
         <li>{{ user }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+    {% endblock %}

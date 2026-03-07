@@ -6,10 +6,6 @@ use utoipa::OpenApi;
 
 use crate::{errors::ApiError, responses::ApiResponse};
 
-pub async fn hello_word() -> &'static str {
-    "Hello World"
-}
-
 pub async fn get_json() -> ApiResponse {
     let json_data = json!({"msg":"this is json"});
     ApiResponse::JsonData(json_data)

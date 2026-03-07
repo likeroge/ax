@@ -3,7 +3,7 @@ use askama::Template;
 #[derive(Template)]
 #[template(path = "index.html")]
 pub struct IndexTemplate {
-    pub name: String,
+    pub message: String,
 }
 
 #[derive(Template)]

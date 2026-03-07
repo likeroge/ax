@@ -12,7 +12,7 @@ use crate::{
 
 pub async fn html_template() -> Result<ApiResponse, ApiError> {
     let template = IndexTemplate {
-        name: "Hello world".to_string(),
+        message: "Hello world".to_string(),
     };
     Ok(ApiResponse::OkHtml(Html(template.render()?)))
 }

@@ -1,20 +1,10 @@
-!
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link href="css/style2.css" rel="stylesheet">
-</head>
-
-<body>
-  <h1>User form</h1>
-  <form action="/api/create-user" method="POST">
-    <label for="">User name</label>
-    <input type="text" name="name" placeholder="Enter username" />
-  </form>
-</body>
-
-</html>
+{% block content %}
+<h1>User form</h1>
+<form class="vertical-block" action="/api/create-user" method="POST">
+  <label for="">User name</label>
+  <input type="text" name="name" placeholder="Enter username" />
+  <button type="submit" class="submit-button" >Submit</button>
+</form>
+{% endblock %}

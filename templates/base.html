@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style2.css" rel="stylesheet">
+  <title>{% block title %}My Website{% endblock %}</title>
+</head>
+
+<body>
+  <header>
+    <h1>{% block header %}Welcome{% endblock %}</h1>
+  </header>
+  <main>
+    {% block content %}
+    <!-- Default content or a placeholder -->
+    {% endblock %}
+  </main>
+  <footer>
+    <p>&copy; 2026</p>
+  </footer>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

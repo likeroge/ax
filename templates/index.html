@@ -1,13 +1,6 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-  <title>Index page</title>
-  <link rel="stylesheet" href="/css/style2.css">
-</head>
-
-<body>
-  <h1>Index file</h1>
-  <h2> {{name}} </h2>
-</body>
-
-</html>
+{% block content %}
+<h1>Index file</h1>
+<h2 class="text-center"> {{message}} </h2>
+{% endblock %}
