@@ -35,19 +35,3 @@ pub async fn get_post_data(Path(post_id): Path<u8>) -> Result<ApiResponse, ApiEr
     println!("{}", post_id);
     Ok(ApiResponse::Ok)
 }
-
-#[derive(OpenApi)]
-#[openapi(
-    paths(
-        // get_users,
-        // create_user,
-        // get_user_by_id,
-    ),
-    components(
-        // schemas(User, CreateUserRequest)
-    ),
-    tags(
-        (name = "users", description = "User management endpoints")
-    )
-)]
-pub struct ApiDoc;
