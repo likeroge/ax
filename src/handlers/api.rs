@@ -2,7 +2,6 @@ use std::collections::HashMap;
 
 use axum::{extract::Path, response::Redirect, Form};
 use serde_json::{json, Value};
-use utoipa::OpenApi;
 
 use crate::{errors::ApiError, responses::ApiResponse};
 
