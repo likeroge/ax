@@ -14,6 +14,7 @@ pub async fn html_template() -> Result<ApiResponse, ApiError> {
     let template = IndexTemplate {
         message: "Hello world".to_string(),
     };
+
     Ok(ApiResponse::OkHtml(Html(template.render()?)))
 }
 
