@@ -56,4 +56,4 @@ USER appuser
 EXPOSE 3000
 
 
-CMD ["/app/ruapi"]
+CMD ["./ruapi"]
