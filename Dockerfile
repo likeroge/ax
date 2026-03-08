@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Создаем не-root пользователя для безопасности
-RUN useradd -m -u 1000 appuser
+#RUN useradd -m -u 1000 appuser
 
 WORKDIR /app
 
@@ -47,10 +47,10 @@ COPY --from=builder /app/target/release/ruapi /app/ruapi
 # COPY --chown=appuser:appuser templates ./templates
 
 # Меняем владельца
-RUN chown -R appuser:appuser /app
+#RUN chown -R appuser:appuser /app
 
 # Переключаемся на не-root пользователя
-USER appuser
+#USER appuser
 
 # Экспонируем порт
 EXPOSE 3000
