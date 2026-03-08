@@ -6,6 +6,7 @@ mod template_structs;
 
 use std::net::SocketAddr;
 
+use axum::{routing::get, Router};
 use tokio::net::TcpListener;
 
 use crate::app_router::AppRouter;
@@ -14,7 +15,8 @@ use crate::app_router::AppRouter;
 
 #[tokio::main]
 async fn main() {
-    let router = AppRouter::default().router;
+    let router = Router::new().route("/", get(async || "Hello world"));
+    // let router = AppRouter::default().router;
     // let swagger_ui = SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi());
     // let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
