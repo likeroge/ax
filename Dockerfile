@@ -56,4 +56,4 @@ USER appuser
 EXPOSE 3000
 
 
-CMD ["source /app/ruapi"]
+CMD ["./ruapi"]
