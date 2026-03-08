@@ -2,8 +2,8 @@
 
 services:
   backend:
-    stdin_open: true # docker run -i
-    tty: true # docker run -t
+    # stdin_open: true # docker run -i
+    # tty: true # docker run -t
     build:
       context: .
       # target: final # используем финальный stage из многоступенчатой сборки
