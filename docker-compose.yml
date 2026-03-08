@@ -34,19 +34,19 @@ services:
   #     context: ./frontend
   #   networks:
   #     - app-network
-  #nginx:
-  # build:
-  # context: ./nginx
-  #ports:
-  #   - "80:80"
-  #    - "443:443"
-  # volumes:
-  # - ./frontend/dist:/usr/share/nginx/html
-  # depends_on:
-  #   - frontend
-  #   - backend
-#    networks:
-#     - app-network
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    # volumes:
+    # - ./frontend/dist:/usr/share/nginx/html
+    # depends_on:
+    #   - frontend
+    #   - backend
+    networks:
+      - app-network
 
 networks:
   app-network:
