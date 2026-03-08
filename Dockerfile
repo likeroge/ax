@@ -11,8 +11,8 @@ WORKDIR /app
 # Копируем только файлы зависимостей
 COPY Cargo.toml Cargo.lock ./
 # Создаем фиктивный main.rs для предварительной компиляции зависимостей
-#RUN mkdir -p src && \
-# echo "fn main() {}" > src/main.rs
+RUN mkdir -p src && \
+  echo "fn main() {}" > src/main.rs
 # Компилируем зависимости (это будет закэшировано)
 RUN cargo build --release
 # Удаляем фиктивный main.rs
