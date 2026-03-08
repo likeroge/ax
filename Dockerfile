@@ -56,4 +56,4 @@ COPY --from=builder /app/target/release/ruapi /app/ruapi
 EXPOSE 3000
 
 
-CMD ["/app/ruapi"]
+CMD ["./ruapi"]
