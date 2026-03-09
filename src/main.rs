@@ -11,6 +11,7 @@ use axum::{
     Router,
 };
 use tokio::net::TcpListener;
+use tower_http::services::ServeDir;
 
 use crate::app_router::AppRouter;
 // use utoipa::OpenApi;
@@ -28,8 +29,8 @@ async fn main() {
         .route("/api/load", get(handlers::api::load_json_placeholder))
         .route("/api/posts/{id}", get(handlers::api::get_post_data))
         .route("/api/json", get(handlers::api::get_json))
-        .route("/api/create-user", post(handlers::api::create_user));
-    // .fallback_service(ServeDir::new("./static"));
+        .route("/api/create-user", post(handlers::api::create_user))
+        .fallback_service(ServeDir::new("./static"));
 
     // let router = AppRouter::default().router;
     // let swagger_ui = SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi());
